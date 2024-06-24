@@ -72,6 +72,11 @@ The backend API provides endpoints to create and retrieve events.
 - **POST /api/events:** Create a new event.
 - **GET /api/events:** Retrieve events with optional pagination, search, and filters.
 
+## Live Deployment
+
+You can view the live deployment of this project [here](https://activity-ahd38763v-ahmedadel56s-projects.vercel.app/).
+
+
 ## Contributing
 
 Contributions are welcome! Please fork this repository and submit pull requests.
