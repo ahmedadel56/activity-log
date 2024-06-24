@@ -1,11 +1,4 @@
 {
-    "build": {
-      "env": {
-        "DATABASE_URL": "postgresql://activity-log_owner:L5aV6tXOqIez@ep-late-glitter-a40m669e.us-east-1.aws.neon.tech/activity-log?sslmode=require"
-      },
-      "hooks": {
-        "build": "npm run build && npx prisma generate"
-      }
-    }
+    "buildCommand": "npm run build"
   }
   
