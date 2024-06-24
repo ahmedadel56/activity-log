@@ -60,7 +60,7 @@ The EventList component displays a list of events with the following features:
 - **Export to CSV:** Download the events data in CSV format.
 - **Pagination:** Navigate through multiple pages of events.
 
-### Screen Shots
+### ScreenShots
 ![image](https://github.com/ahmedadel56/activity-log/assets/43178495/a0568d40-c1d7-4867-a4ab-920ea5e49706)
 ![image](https://github.com/ahmedadel56/activity-log/assets/43178495/f21b57c7-78ac-4d29-976b-87e59ee49ed3)
 ![image](https://github.com/ahmedadel56/activity-log/assets/43178495/b070510f-d81c-4508-94fe-1b85ef5b161d)
