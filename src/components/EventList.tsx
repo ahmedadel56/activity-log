@@ -59,77 +59,79 @@ const EventList = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center mb-4 bg-gray-100 p-4 rounded-lg">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-4 bg-gray-100 p-4 rounded-lg space-y-4 md:space-y-0">
         <input
           type="text"
           placeholder="Search name, email or action..."
           value={search}
           onChange={handleSearchChange}
-          className="p-2 border rounded w-1/3"
+          className="p-2 border rounded w-full md:w-1/3"
         />
-        <div className="flex space-x-2">
-          <select name="actorId" value={filters.actorId} onChange={handleFilterChange} className="p-2 border rounded">
+        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
+          <select name="actorId" value={filters.actorId} onChange={handleFilterChange} className="p-2 border rounded w-full md:w-auto">
             <option value="">All Actors</option>
             {actors.map(actor => (
               <option key={actor} value={actor}>{actor}</option>
             ))}
           </select>
-          <select name="targetId" value={filters.targetId} onChange={handleFilterChange} className="p-2 border rounded">
+          <select name="targetId" value={filters.targetId} onChange={handleFilterChange} className="p-2 border rounded w-full md:w-auto">
             <option value="">All Targets</option>
             {targets.map(target => (
               <option key={target} value={target}>{target}</option>
             ))}
           </select>
-          <select name="actionId" value={filters.actionId} onChange={handleFilterChange} className="p-2 border rounded">
+          <select name="actionId" value={filters.actionId} onChange={handleFilterChange} className="p-2 border rounded w-full md:w-auto">
             <option value="">All Actions</option>
             {actions.map(action => (
               <option key={action} value={action}>{action}</option>
             ))}
           </select>
-          <button onClick={() => setIsLive(!isLive)} className={`p-2 rounded ${isLive ? 'bg-red-500 text-white' : 'bg-gray-200 text-black'}`}>
+          <button onClick={() => setIsLive(!isLive)} className={`p-2 rounded w-full md:w-auto ${isLive ? 'bg-red-500 text-white' : 'bg-gray-200 text-black'}`}>
             {isLive ? 'Live' : 'Live'}
           </button>
-          <button onClick={downloadCSV} className="p-2 bg-green-500 text-white rounded">Export</button>
+          <button onClick={downloadCSV} className="p-2 bg-green-500 text-white rounded w-full md:w-auto">Export</button>
         </div>
       </div>
-      <table className="min-w-full table-auto bg-white rounded-lg shadow-md">
-        <thead className="bg-gray-800">
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actor</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Action</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Date</th>
-          </tr>
-        </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
-          {events.map((event: Event): JSX.Element => (
-            <React.Fragment key={event.id}>
-              <tr
-                className="bg-white border-b cursor-pointer hover:bg-gray-50"
-                onClick={() => setSelectedEvent(selectedEvent && selectedEvent.id === event.id ? null : event)}
-              >
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{event.actorName}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{event.actionName}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(event.occurredAt).toLocaleString()}</td>
-              </tr>
-              {selectedEvent && selectedEvent.id === event.id && (
-                <tr className="bg-gray-100">
-                  <td colSpan={3} className="px-6 py-4">
-                    <div className="p-4 border rounded bg-gray-50">
-                      <p><strong>Actor:</strong> {event.actorName}</p>
-                      <p><strong>Email:</strong> {event.actorId}</p>
-                      <p><strong>Action:</strong> {event.actionName}</p>
-                      <p><strong>Target:</strong> {event.targetName}</p>
-                      <p><strong>Location:</strong> {event.location}</p>
-                      <p><strong>Date:</strong> {new Date(event.occurredAt).toLocaleString()}</p>
-                      <p><strong>Metadata:</strong> {JSON.stringify(event.metadata)}</p>
-                    </div>
-                  </td>
+      <div className="overflow-x-auto">
+        <table className="min-w-full table-auto bg-white rounded-lg shadow-md">
+          <thead className="bg-gray-800">
+            <tr>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actor</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Action</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Date</th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {events.map((event: Event): JSX.Element => (
+              <React.Fragment key={event.id}>
+                <tr
+                  className="bg-white border-b cursor-pointer hover:bg-gray-50"
+                  onClick={() => setSelectedEvent(selectedEvent && selectedEvent.id === event.id ? null : event)}
+                >
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{event.actorName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{event.actionName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(event.occurredAt).toLocaleString()}</td>
                 </tr>
-              )}
-            </React.Fragment>
-          ))}
-        </tbody>
-      </table>
+                {selectedEvent && selectedEvent.id === event.id && (
+                  <tr className="bg-gray-100">
+                    <td colSpan={3} className="px-6 py-4">
+                      <div className="p-4 border rounded bg-gray-50">
+                        <p><strong>Actor:</strong> {event.actorName}</p>
+                        <p><strong>Email:</strong> {event.actorId}</p>
+                        <p><strong>Action:</strong> {event.actionName}</p>
+                        <p><strong>Target:</strong> {event.targetName}</p>
+                        <p><strong>Location:</strong> {event.location}</p>
+                        <p><strong>Date:</strong> {new Date(event.occurredAt).toLocaleString()}</p>
+                        <p><strong>Metadata:</strong> {JSON.stringify(event.metadata)}</p>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="flex justify-between mt-4">
         <button
           onClick={() => setPage(page > 1 ? page - 1 : 1)}
