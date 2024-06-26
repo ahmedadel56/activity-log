@@ -74,7 +74,7 @@ The backend API provides endpoints to create and retrieve events.
 
 ## Live Deployment
 
-You can view the live deployment of this project [here](https://activity-ahd38763v-ahmedadel56s-projects.vercel.app/).
+You can view the live deployment of this project [here](https://activity-log-tau.vercel.app/).
 
 
 ## Contributing
